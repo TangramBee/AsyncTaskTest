@@ -18,10 +18,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<NewsBean> mList;
     private LayoutInflater mInflater;
+    private ImageLoader mImageLoader;
 
 
     public MyAdapter(Context context, List<NewsBean> data) {
         mList = data;
+        mImageLoader = new ImageLoader();
         //mInflater = LayoutInflater.from(context);
 
     }
@@ -39,7 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.imgUrl.setImageResource(R.mipmap.ic_launcher);
-        new ImageLoader().showImageByThread(holder.imgUrl, mList.get(position).newIconUrl);
+        mImageLoader.showImageByThread(holder.imgUrl, mList.get(position).newIconUrl);
         String url = mList.get(position).newIconUrl;
         holder.imgUrl.setTag(url);
         holder.title.setText(mList.get(position).newsTile);
